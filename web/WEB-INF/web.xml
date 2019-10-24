@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+     <servlet>
+        <servlet-name>HelloServlet</servlet-name>
+        <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>jersey.config.server.provider.packages</param-name>
+            <param-value>co.com.afin.ualet.iop</param-value>
+        </init-param>
+        <!--
+            Parámetro que indica que las listas SIEMPRE se envien como listas, asi tengan 1 solo objeto.
+            Validar que implicaciones tiene, ya que los campos NULL también los envía en el response.
+            -->        
+        <init-param>
+            <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+     </servlet>
+      <servlet-mapping>
+        <servlet-name>HelloServlet</servlet-name>
+        <url-pattern>/api1.0/*</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>   
+</web-app>
